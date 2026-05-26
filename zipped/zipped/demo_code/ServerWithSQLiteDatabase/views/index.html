@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>MyTunes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div id="playlist">
+            <h2>Playlist</h2>
+            <table id="playlistTable">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Title</th>
+                        <th>Artist</th>
+                        <th>Cover</th>
+                    </tr>
+                </thead>
+                <tbody id="playlistTableBody"></tbody>
+            </table>
+        </div>
+
+        <div class="wrapper">
+            <label for="songTitleTextField">Enter Song Title:</label>
+            <input type="text" id="songTitleTextField" />
+            <button id="submit_button">Submit</button>
+        </div>
+
+        <div id="searchResults">
+            <h2 id="searchResultsHeading"></h2>
+            <table id="searchResultsTable">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Title</th>
+                        <th>Artist</th>
+                        <th>Cover</th>
+                    </tr>
+                </thead>
+                <tbody id="searchResultsTableBody"></tbody>
+            </table>
+        </div>
+        <div id="registration">
+            <h2>Registration</h2>
+            <form id="registrationForm" method="POST">
+                <label for="useridField">User ID:</label>
+                <input type="text" id="useridField" name="userid" required>
+                <br>
+                <label for="passwordField">Password:</label>
+                <input type="password" id="passwordField" name="password" required>
+                <br>
+                <button type="submit">Register</button>
+              </form>
+            <div id="registrationMessage"></div>
+          </div>
+          <div id="createPlaylist">
+            <label for="playlistName">Enter Playlist Name:</label>
+            <input type="text" id="playlistName" />
+            <button id="createPlaylistButton">Create Playlist</button>
+          </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

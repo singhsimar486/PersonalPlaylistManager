@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SQLite Install</title>
+<style type="text/css">
+body {
+	font-family: Arial, Helvetica, sans-serif;	
+	margin-left:80px;
+	margin-right:80px;
+}
+h1, h2, h3 {
+	font-weight: bold;
+	color: blue;
+}
+p, ul {
+		font-size: large;
+}
+
+.red {
+	color: #F00;
+}
+  .bold {
+	font-weight: bold;
+}
+.requirement {
+	font-weight: bold;
+	background-color: #6AF37A;
+}
+.requirement_danger {
+	font-weight: bold;
+	background-color: #F47272
+}
+.requirement_warning {
+	font-weight: bold;
+	background-color: #F6CA54
+}
+.code {
+	font-family: "Courier New", Courier, monospace;
+}
+table.code {
+	font-family: "Courier New", Courier, monospace;
+	text-align: left;	
+}
+td, th {
+	padding-left: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;		
+	}
+.requirement_warning1 {	font-weight: bold;
+	background-color: #F7BD36
+}
+</style>
+</head>
+<body>
+<h1>Useful SQLite &quot;dot&quot; Commands</h1>
+<p>In the <span class="code">sqlite3</span> command line interface &quot;dot&quot; commands (i.e. commands that start with a dot) are not SQL 
+  statements but rather special instructions for the sqlite3 shell. These dot 
+commands do not end in a semicolon the way SQL stattements do. You can see a list of all the available shell commands by executing <span class="code">.help</span> at the <span class="bold">sqlite&gt;</span> prompt.</p>
+<p>Note sqlite3 is the product we will be using. sqlite3 is a long term product and should not be considered a version number. Thus the application we will launch will always be sqlite3 and not sqlite or sqlite4, for example.</p>
+<p>Some dot commands we will use a lot: </p>
+<table border="1" class="code">
+	<tr>
+	<th width="156">Command</th>
+	<th width="705">Explanation</th>
+	</tr>
+	<tr>
+	<td>.open</td>
+	<td><p>Open a database. You can specify the database to open when you execute sqlite3 command line or launch without a command line argument and then use .open from within sqlite3 application.</p>
+	  <p>sqlite3 mydatabase.db<br>
+      <img src="images/sqlite3_launch1.png" width="543" height="108" alt=""/> </p>
+	  <p>OR<br>
+      sqlite3<br>
+      .open mydatabase.db</p>
+	  <img src="images/sqlite3_launch2.png" width="666" height="179" alt=""/></td>
+	</tr>
+	<tr>
+	<td>.help</td>
+	<td>List summary of all the dot commands.</td>
+	</tr>
+  <tr>
+	<td><p>.exit<br>
+	  .quit
+	</p></td>
+	<td>Exit or quit the application</td>
+	</tr>
+	<tr>
+	<td>.tables</td>
+	<td>List all the tables in the open database.</td>
+	</tr>
+	<tr>
+	<td>.schema TABLE</td>
+	<td>Display schema definition of table TABLE in SQL</td>
+	</tr>
+	<tr>
+	<td>.schema</td>
+	<td>Without a table name will display the schema for all your tables 
+in the database</td>
+	</tr>
+	<tr>
+	<td>.schema sqlite_master</td>
+	<td><p>An sqlite database has a hidden table called sqlite_master that shows information about the database's tables. It can be helpul to query this.</p>
+	  <pre>
+sqlite&gt; .schema sqlite_master
+CREATE TABLE sqlite_master (
+  type text,
+  name text,
+  tbl_name text,
+  rootpage integer,
+  sql text
+);
+sqlite&gt; 
+	  </pre>
+	</td>
+	</tr>
+	<tr>
+	<td>.read FILE</td>
+	<td>Read sql and cli commands from a file called FILE (e.g. 
+telephone_switch.sql) in the current directory</td>
+	</tr>
+	<tr>
+	<td>.mode column</td>
+	<td>Show output of SQL SELECT statements as columns.<br>
+	  Other modes:
+		<ul>
+		<li>csv - Comma-separated values  column</li>
+		<li>column - Columns (left aligned)</li>
+		<li>html - HTML table markup</li>
+		<li>insert - SQL insert statements for TABLE</li>
+		<li>line - One value per line</li>
+		<li>list - Values delimited by .separator string</li>
+		<li>tabs - Tab-separated values</li>
+		<li>tcl - TCL list elements</li>
+		</ul>
+	</td>
+	</tr>
+    <tr>
+	<td>.header ON|OFF</td>
+	<td>Show column names header with output</td>
+	</tr>
+	<tr>
+	<td>.echo ON|OFF</td>
+	<td>Show the sql query being processed (Helpful if producing output for an assignment or demonstration.)</td>
+	</tr>
+	<tr>
+	<td>.import FILE TABLE</td>
+	<td>Import data from FILE (csv format) into TABLE. Helpful if you want to populate a database from spreadsheet, or similar, data.</td>
+	</tr>
+	<tr>
+	<td><p>.separator STRING</p>
+	  <p>.separator COL ?ROW?</p></td>
+	<td><p>Set column separator used by .output and .import to STRING</p>
+	  <p>Change the column separator, and optionally the row<br>
+separator, for both the output mode and .import</p></td>
+	</tr>
+	<tr>
+	<td>.show</td>
+	<td><p>Show values of various variables including the current separator string</p>
+	  <pre>
+	  sqlite&gt; .show
+        echo: off
+         eqp: off
+     explain: auto
+     headers: on
+        mode: column
+   nullvalue: ""
+      output: stdout
+colseparator: "|"
+rowseparator: "\n"
+       stats: off
+       width: 
+    filename: :memory:
+	  </pre>
+	</td>
+	</tr>
+	<tr>
+	<td>.output FILE</td>
+	<td>Redirect output to file FILE.</td>
+	</tr>
+	<tr>
+	<td>.output stdout</td>
+	<td>Redirect output back to stdout (console)</td>
+	</tr>
+	<tr>
+	<td>.dump TABLE</td>
+	<td>Output the contents of table TABLE, or entire database, as an sql script</td>
+	</tr>
+	<tr>
+	<td>.width 10 20 5</td>
+	<td>Set the output column width for column mode. In this example the column widths of the three columns of output would be 10,20 and 5 characters.</td>
+	</tr>
+</table>
+<hr>
+</body>
+</html>
